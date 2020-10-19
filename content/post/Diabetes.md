@@ -1,7 +1,7 @@
 ---
 title: "The Effects of Work and Lifestyle on Individuals with Diabetes"
 author: "Group 12"
-date: "10-19-2020"
+date: "2020-10-19"
 output: pdf_document
 ---
 
