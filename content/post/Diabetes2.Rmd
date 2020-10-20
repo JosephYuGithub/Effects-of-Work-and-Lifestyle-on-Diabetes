@@ -11,17 +11,17 @@ output: pdf_document
 
 ## Abstract
 
-Here is where you give a brief (one paragraph overview of your entire paper). This should include some background/introduction, some methodology, results and conclusions.
-
-Out paper is designed to look at the effects of work and lifestyle on the age at which the recipients of the General Social Survey (GSS) are diagnosed with diabetes. Our model will look at a select few variables and attempt to create regression models based on these variables.
+Out paper is designed to look at the effects of work and lifestyle on the age at which the recipients of the General Social Survey (GSS) are diagnosed with diabetes. Our model will look at a select few variables and attempt to create regression models based on these variables to predict the age at which someone will be diagnosed with diabetes. We have found that individuals who are have longer sleep hours are more likely to be diagnosed with diabetes at an earlier age, and shorter working hours tend to correlate with a earlier diagnoses as well. However, income levels and alcohol consumption on the other hand do not appear to affect the age of diagnosis of diabetes.
 
 ## Introduction
 
-Here is where you should give insight into the setting and introduce the goal of the analysis. Here you can introduce ideas and basic concepts regarding the study setting and the potential model. Again, this is the introduction, so you should be explaining the importance of the work that is ahead and hopefully build some suspense for the reader. You can also highlight what will be included in the subsequent sections.
+According to the World Health Organization, diabetes is currently on the rise, with 422 million people diagnosed with the condition in 2014, up from 108 million in 1980. Adults with diabetes are more likely to be at risk of heart attacks and strokes, and if conditions worsen, could lead to limb amputations and blindness. Diabetes sits as the 9th deadliest illness in the world at a staggering death toll of 1.37 million in 2017, that is more than HIV/AIDS and malaria!
 
-The tidyverse library is an extensive collection of different libraries used commonly in statistical work. In this study, we will be using primarily the dplyr library and the ggplot2 library, both part of the tidyverse collection. The dplyr library is a useful collection that allows us to clean the dataset. We can subset variables using the select function, create new columns using the mutate function, rename column names from their original titles in the GSS survey to more appropriate and descriptive names with the rename function, and group row operations using rowwise. The ggplot2 library allows us to map out our models with a variety of different options, in this study we will be only using a scatterplot using geom_point. $\\$
+Currently, diabetes is tested and diagnosed through blood sugar tests, and can be treated through regular monitoring of blood sugar, medication, healthy diet, and regular exercise. Therefore, it is imperative that individuals are properly tested for diabetes as soon as possible to avoid worsening conditions.
 
-The janitor library
+Lastly, I will be mentioning the R libraries used to clean and model our data. The tidyverse library is an extensive collection of different libraries used commonly in statistical work. In this study, we will be using primarily the dplyr library and the ggplot2 library, both part of the tidyverse collection. The dplyr library is a useful collection that allows us to clean the dataset. We can subset variables using the select function, create new columns using the mutate function, rename column names from their original titles in the GSS survey to more appropriate and descriptive names with the rename function, and group row operations using rowwise. The ggplot2 library allows us to map out our models with a variety of different options, in this study we will be only using a scatterplot using geom_point. Additionally, the Janitor library will be used for the clean_names function, which will help us return names in lowercase form, and substitute spaces with underscores.
+
+
 
 
 ## Data
@@ -36,22 +36,22 @@ library(tidyverse)
 ```
 
 
-```{r read data}
+```{r, include=FALSE}
 
 raw_health <- read_csv("AAsD8pYL_1.csv")
 
 ```
 
 
-```{r}
+```{r, include =FALSE}
 
-health <- raw_health %>% select(CASEID, dvagegr, dvsex, dvperinc, dvbmimdf, a9cap, g2cap, g3cap, h2hrs, j3, k4, m17cap) 
+health <- raw_health %>% select(CASEID, dvperinc, a9cap, h2hrs, k4, m17cap) 
 
 
 health <- health %>% clean_names() %>% 
-    rename (case_id = caseid, age_first_diagnosed_with_diabetes = a9cap, sex = dvsex,  
-            age = dvagegr, income_12months = dvperinc, BMI = dvbmimdf, 
-            height = g2cap, weight = g3cap, sleep_hours = h2hrs, 
+    rename (case_id = caseid, age_first_diagnosed_with_diabetes = a9cap,  
+            income_12months = dvperinc, 
+             sleep_hours = h2hrs, 
             average_drink_for_12_months = k4, 
             work_hours_per_week = m17cap)
 
@@ -66,31 +66,7 @@ health <- health %>%
 ))
 
 
-health <- health %>% 
-  mutate(age = case_when(
-    age== 1 ~ "15 to 17",
-    age== 2 ~ "18 to 19",
-    age== 3 ~ "20 to 24",
-    age== 4 ~ "25 to 29",
-    age== 5 ~ "30 to 34",
-    age== 6 ~ "35 to 39",
-    age== 7 ~ "40 to 44",
-    age== 8 ~ "45 to 49",
-    age== 9 ~ "50 to 54",
-    age== 10 ~ "55 to 59",
-    age== 11 ~ "60 to 64",
-    age== 12 ~ "65 to 69",
-    age== 13 ~ "70 to 74",
-    age== 14 ~ "75 to 79",
-    age== 15 ~ "80 to 99",
-  )) 
 
-
-health <- health %>% 
-  mutate(sex = case_when(
-    sex== 1 ~ "Male",
-    sex== 2 ~ "Female"
-))
 
 health <- na.omit(health)
 
@@ -150,7 +126,7 @@ health_linear
 ```
 
 
-The data was retrieved from GSS 
+The data was retrieved from GSS, and after cleaning 66 observations were left.
 
 
 
@@ -158,13 +134,13 @@ The data was retrieved from GSS
 ## Model
 ```{r}
 
-ggplot(data=health_linear, aes(x=sleep_hours, y=age_first_diagnosed_with_diabetes)) +geom_point() + stat_smooth(method=lm) 
+ggplot(data=health_linear, aes(x=sleep_hours, y=age_first_diagnosed_with_diabetes)) +geom_point() + stat_smooth(method=lm) + ggtitle("Hours spent sleeping each night vs Age first diagnosed with diabetes (Fig.1)") +xlab("Hours spent sleeping each night")+ ylab("Age first diagnosed with diabetes")
 
-ggplot(data=health_linear, aes(x=work_hours_per_week, y=age_first_diagnosed_with_diabetes)) +geom_point() + stat_smooth(method=lm)
+ggplot(data=health_linear, aes(x=work_hours_per_week, y=age_first_diagnosed_with_diabetes)) +geom_point() + stat_smooth(method=lm) + ggtitle("Hours spent working per week vs Age first diagnosed with diabetes (Fig.2)") +xlab("Hours spent working per week")+ ylab("Age first diagnosed with diabetes")
 
-ggplot(data = health_linear, aes(x=income_12months, y=age_first_diagnosed_with_diabetes, group = 1)) + geom_point() + stat_smooth(method = lm) + theme(axis.text.x = element_text(angle = 90))
+ggplot(data = health_linear, aes(x=income_12months, y=age_first_diagnosed_with_diabetes, group = 1)) + geom_point() + stat_smooth(method = lm) + theme(axis.text.x = element_text(angle = 90)) + ggtitle("Personal income during past 12 months vs Age first diagnosed with diabetes(Fig.3)") +xlab("Personal income during past 12 months")+ ylab("Age first diagnosed with diabetes")
 
-ggplot(data = health_linear, aes(x=average_drink_for_12_months, y=age_first_diagnosed_with_diabetes, group = 1)) + geom_point() + stat_smooth(method = lm) + theme(axis.text.x = element_text(angle = 90))
+ggplot(data = health_linear, aes(x=average_drink_for_12_months, y=age_first_diagnosed_with_diabetes, group = 1)) + geom_point() + stat_smooth(method = lm) + theme(axis.text.x = element_text(angle = 90)) + ggtitle("Frequency of drinking alcoholic beverages in past 12 months vs Age first diagnosed with diabetes (Fig.4)") +xlab("Frequency of drinking alcoholic beverages in past 12 months")+ ylab("Age first diagnosed with diabetes")
 
 lmsleep <- lm(age_first_diagnosed_with_diabetes ~ sleep_hours, data = health_linear)
 summary(lmsleep)
@@ -187,6 +163,32 @@ summary(lmhealth)
 
 
 ```
+## Results
+
+Here you will include all results. This includes descriptive statistics, graphs, figures, tables, and model results. Please ensure that everything is well formatted and in a report style. You must also provide an explanation of the results in this section. You can overflow to an Appendix if needed. 
+
+Please ensure that everything is well labelled. So if you have multiple histograms and plots, calling them Figure 1, 2, 3, etc. and referencing them as Figure 1, Figure 2, etc. in your report will be expected. The reader should not get lost in a sea of information. Make sure to have the results be clean, well formatted and digestible.
+
+## Discussion
+
+Here you will discuss conclusions drawn from the results and comment on how it relates to the original goal of the study (which was specified in the Introduction).
+
+# Weaknesses
+
+When looking through the study, data, and analysis there are two clear weaknesses that we believe are quite notable. 
+
+To begin, the first weakness was from the data that we cleaned and filtered.  When looking at our data, we have made slight modifications to all the columns. For example, the “age first diagnosed with diabetes” column has been slightly adjusted to exclude all the values which correspond to labels which do not accurately portray an age. For example. The age values 96 to 99 will not be included since they correspond to those values which are never diagnosed, not applicable, do not know, and not stated; in their respective order. Furthermore, this type of cleaning and filtering has been continued down for other columns including work hours per week, sleep hours, income in the last 12 months, and average number of drinks in the last 12 months. As a result of all of this, our data has been significantly decreased from the original quantity we received from CHASS. 
+
+To continue, the other weakness lies with outliers. Throughout our models, it is clear that there are many outliers within our data. This weakness has a major impact on the linear regression models because the outliers influence the slopes by raising/lowering them. The other models are still influenced as well. If we removed the outliers, our models would be cleaner and much more accurate.
+
+# Next Steps
+
+Here you discuss subsequent work to be done after this report. This can include next steps in terms of statistical analysis (perhaps there is a more efficient algorithm available, or perhaps there is a caveat in the data that would allow for some new technique). Future steps should also be specified in terms of the study setting (eg. including a follow-up survey on something, or a subsequent study that would complement the conclusions of your report).
+
+
+## References
+
+
 
 
 
