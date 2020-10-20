@@ -8,6 +8,7 @@ output: pdf_document
 # Chae Bae, Pritam Sinha, Chen Hao Yu
 # October 18, 2020
 
+Github repository: https://github.com/JosephYuGithub/Effects-of-Work-and-Lifestyle-on-Diabetes/tree/main/content/post
 
 ## Abstract
 
@@ -15,11 +16,11 @@ Out paper is designed to look at the effects of work and lifestyle on the age at
 
 ## Introduction
 
-According to the World Health Organization, diabetes is quickly on the rise with 422 million people diagnosed with the condition in 2014, up from 108 million in 1980. Adults with diabetes are more likely to be at risk of heart attacks and strokes, and if conditions worsen, could lead to limb amputations and blindness. Diabetes sits as the 9th deadliest illness in the world at a staggering death toll of 1.37 million in 2017, that is more than HIV/AIDS and malaria!
+According to the World Health Organization (2020), diabetes is quickly on the rise with 422 million people diagnosed with the condition in 2014, up from 108 million in 1980. Adults with diabetes are more likely to be at risk of heart attacks and strokes, and if conditions worsen, could lead to limb amputations and blindness. (WHO, 2020) Diabetes sits as the 9th deadliest illness in the world at a staggering death toll of 1.37 million in 2017, that is more than HIV/AIDS and malaria! (Ritchie, 2018)
 
-Currently, diabetes is tested and diagnosed through blood sugar tests, and can be treated through regular monitoring of blood sugar, medication, healthy diet, and regular exercise. Therefore, it is imperative that individuals are properly tested for diabetes as soon as possible to avoid worsening conditions. Our study is to establish any correlations between the hours of sleep, working hours, income levels, and alcohol consumption to better predict the age of diagnosis of diabetes. Do individuals with shorter sleep hours tend to be diagnosed with diabetes earlier than individuals who sleep longer? Does alcohol consumption have an effect on the age of diagnosis. Our study will attempt to answer those questions.
+Currently, diabetes is tested and diagnosed through blood sugar tests, and can be treated through regular monitoring of blood sugar, medication, healthy diet, and regular exercise (Mayo Clinic, 2020). Therefore, it is imperative that individuals are properly tested for diabetes as soon as possible to avoid worsening conditions. Our study is to establish any correlations between the hours of sleep, working hours, income levels, and alcohol consumption to better predict the age of diagnosis of diabetes. Do individuals with shorter sleep hours tend to be diagnosed with diabetes earlier than individuals who sleep longer? Does alcohol consumption have an effect on the age of diagnosis. Our study will attempt to answer those questions.
 
-Lastly, I will be mentioning the R libraries used to clean and model our data. The tidyverse library is an extensive collection of different libraries used commonly in statistical work. In this study, we will be using primarily the dplyr library and the ggplot2 library, both part of the tidyverse collection. The dplyr library is a useful collection that allows us to clean the dataset. We can subset variables using the select function, create new columns using the mutate function, rename column names from their original titles in the GSS survey to more appropriate and descriptive names with the rename function, and group row operations using rowwise. The ggplot2 library allows us to map out our models with a variety of different options, in this study we will be only using a scatterplot using geom_point. Additionally, the Janitor library will be used for the clean_names function, which will help us return names in lowercase form, and substitute spaces with underscores.
+Lastly, I will be mentioning the R libraries used to clean and model our data. The tidyverse library is an extensive collection of different libraries used commonly in statistical work. In this study, we will be using primarily the dplyr library and the ggplot2 library, both part of the tidyverse collection. The dplyr library is a useful collection that allows us to clean the dataset. We can subset variables using the select function, create new columns using the mutate function, rename column names from their original titles in the GSS survey to more appropriate and descriptive names with the rename function, and group row operations using rowwise. The ggplot2 library allows us to map out our models with a variety of different options, in this study we will be only using a scatterplot using geom_point. Additionally, the janitor library will be used for the clean_names function, which will help us return names in lowercase form, and substitute spaces with underscores.
 
 ## Data
 
@@ -115,15 +116,15 @@ health_linear <- health_linear %>%
       average_drink_for_12_months== 9 ~ as.character(NA),
 ))
 
+```
 
-
-
+```{r}
 health_linear <- na.omit(health_linear)
 health_linear
 ```
 
 
-The data was retrieved from GSS, and after cleaning 66 observations were left.
+The data was retrieved from GSS, and 66 observations were left after cleaning the data.
 
 
 
@@ -169,12 +170,6 @@ The multiple linear regression model for $$\hat{Y}$$ = 49.41 - 3.2*(Sleep hours)
 
 
 
-
-
-```
-
-
-
 ## Results
 
 Before we begin going over the results, we must reiterate the null hypothesis of 0 ($H_0 = 0.1$). Our null hypothesis states the slope of the age first diagnosed with diabetes and any of the other factors have a slope of 0. This means these two variables have no affect with each other. 
@@ -198,8 +193,11 @@ To continue, the other weakness lies with outliers. Throughout our models, it is
 
 # Next Steps
 
-Here you discuss subsequent work to be done after this report. This can include next steps in terms of statistical analysis (perhaps there is a more efficient algorithm available, or perhaps there is a caveat in the data that would allow for some new technique). Future steps should also be specified in terms of the study setting (eg. including a follow-up survey on something, or a subsequent study that would complement the conclusions of your report).
+Overall, we believe our team has done an excellent analysis of this topic but we believe there are some further steps we can take to solidify our findings. Moving forward another step we can take is to further delve into how this data was retrieved. For example, learning about how this data was collected and the means of whom it is from. We are sure this data is not a census from every Canadian in 1991 but we believe if we further understood where our sample came from it would help solidify the findings. To continue, we believe it is best to "redo" our study with a data set from 2020 or a more recent year. Since our data is from over 20 years ago, there is a chance that our regressions have changed and it would be best to have our report with the most accurate results.
 
+## Conclusion
+
+Looking back the original goal of our study was to help individuals discover diabetes earlier. The means for this was based on the variables of lifestyle habits. We have used frequentest statistics and have created linear models to show the relationships of sleep hours, work hours per week, income in 12 months, and average alcoholic consumption in 12 months with the average age an individual is diagnosed with diabetes. Our results have shown which variables have a relationship with the age of first diagnosis and which variables we had to accept the null hypothsis of $H_0 = 0.1$. Moving forward, we have found the slopes of these relationship and the p-values. We believe our study has helped enforce our original goal as anyone utilising our findings may be more cautious with their lifestyle choices.
 
 ## References
 

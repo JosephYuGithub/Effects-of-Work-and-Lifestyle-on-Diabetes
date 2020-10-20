@@ -12,30 +12,45 @@ output: pdf_document
 </div>
 <div id="october-18-2020" class="section level1">
 <h1>October 18, 2020</h1>
+<p>Github repository: <a href="https://github.com/JosephYuGithub/Effects-of-Work-and-Lifestyle-on-Diabetes/tree/main/content/post" class="uri">https://github.com/JosephYuGithub/Effects-of-Work-and-Lifestyle-on-Diabetes/tree/main/content/post</a></p>
 <div id="abstract" class="section level2">
 <h2>Abstract</h2>
 <p>Out paper is designed to look at the effects of work and lifestyle on the age at which the recipients of the General Social Survey (GSS) are diagnosed with diabetes. Our model will look at a select few variables and attempt to create regression models based on these variables to predict the age at which someone will be diagnosed with diabetes. We have found that individuals who are have longer sleep hours are more likely to be diagnosed with diabetes at an earlier age, and shorter working hours tend to correlate with a earlier diagnoses as well. However, income levels and alcohol consumption on the other hand do not appear to affect the age of diagnosis of diabetes.</p>
 </div>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
-<p>According to the World Health Organization, diabetes is quickly on the rise with 422 million people diagnosed with the condition in 2014, up from 108 million in 1980. Adults with diabetes are more likely to be at risk of heart attacks and strokes, and if conditions worsen, could lead to limb amputations and blindness. Diabetes sits as the 9th deadliest illness in the world at a staggering death toll of 1.37 million in 2017, that is more than HIV/AIDS and malaria!</p>
-<p>Currently, diabetes is tested and diagnosed through blood sugar tests, and can be treated through regular monitoring of blood sugar, medication, healthy diet, and regular exercise. Therefore, it is imperative that individuals are properly tested for diabetes as soon as possible to avoid worsening conditions. Our study is to establish any correlations between the hours of sleep, working hours, income levels, and alcohol consumption to better predict the age of diagnosis of diabetes. Do individuals with shorter sleep hours tend to be diagnosed with diabetes earlier than individuals who sleep longer? Does alcohol consumption have an effect on the age of diagnosis. Our study will attempt to answer those questions.</p>
-<p>Lastly, I will be mentioning the R libraries used to clean and model our data. The tidyverse library is an extensive collection of different libraries used commonly in statistical work. In this study, we will be using primarily the dplyr library and the ggplot2 library, both part of the tidyverse collection. The dplyr library is a useful collection that allows us to clean the dataset. We can subset variables using the select function, create new columns using the mutate function, rename column names from their original titles in the GSS survey to more appropriate and descriptive names with the rename function, and group row operations using rowwise. The ggplot2 library allows us to map out our models with a variety of different options, in this study we will be only using a scatterplot using geom_point. Additionally, the Janitor library will be used for the clean_names function, which will help us return names in lowercase form, and substitute spaces with underscores.</p>
+<p>According to the World Health Organization (2020), diabetes is quickly on the rise with 422 million people diagnosed with the condition in 2014, up from 108 million in 1980. Adults with diabetes are more likely to be at risk of heart attacks and strokes, and if conditions worsen, could lead to limb amputations and blindness. (WHO, 2020) Diabetes sits as the 9th deadliest illness in the world at a staggering death toll of 1.37 million in 2017, that is more than HIV/AIDS and malaria! (Ritchie, 2018)</p>
+<p>Currently, diabetes is tested and diagnosed through blood sugar tests, and can be treated through regular monitoring of blood sugar, medication, healthy diet, and regular exercise (Mayo Clinic, 2020). Therefore, it is imperative that individuals are properly tested for diabetes as soon as possible to avoid worsening conditions. Our study is to establish any correlations between the hours of sleep, working hours, income levels, and alcohol consumption to better predict the age of diagnosis of diabetes. Do individuals with shorter sleep hours tend to be diagnosed with diabetes earlier than individuals who sleep longer? Does alcohol consumption have an effect on the age of diagnosis. Our study will attempt to answer those questions.</p>
+<p>Lastly, I will be mentioning the R libraries used to clean and model our data. The tidyverse library is an extensive collection of different libraries used commonly in statistical work. In this study, we will be using primarily the dplyr library and the ggplot2 library, both part of the tidyverse collection. The dplyr library is a useful collection that allows us to clean the dataset. We can subset variables using the select function, create new columns using the mutate function, rename column names from their original titles in the GSS survey to more appropriate and descriptive names with the rename function, and group row operations using rowwise. The ggplot2 library allows us to map out our models with a variety of different options, in this study we will be only using a scatterplot using geom_point. Additionally, the janitor library will be used for the clean_names function, which will help us return names in lowercase form, and substitute spaces with underscores.</p>
 </div>
 <div id="data" class="section level2">
 <h2>Data</h2>
-<p>The data was retrieved from GSS, and after cleaning 66 observations were left.</p>
+<pre><code>## # A tibble: 66 x 6
+##    case_id income_12months age_first_diagn… sleep_hours average_drink_f…
+##      &lt;dbl&gt; &lt;chr&gt;                      &lt;dbl&gt;       &lt;dbl&gt; &lt;chr&gt;           
+##  1    1809 $10,000 to 14,…               55           6 Once or twice a…
+##  2    2014 $20,000 to 29,…                1           7 Less often than…
+##  3    2136 $40,000 to 59,…               14           7 2 - 3 times a w…
+##  4    2833 $20,000 to 29,…               25           7 2 - 3 times a w…
+##  5    3193 $40,000 to 59,…               11           8 Once a week     
+##  6    4341 $20,000 to 29,…               24           8 Once a week     
+##  7    4585 $40,000 to 59,…               42           6 Once a week     
+##  8    5540 $5,000 to 9,999               45           6 Once or twice a…
+##  9    6078 Less than $5,0…                4           8 Less often than…
+## 10    6163 $5,000 to 9,999               50           7 Once a week     
+## # … with 56 more rows, and 1 more variable: work_hours_per_week &lt;dbl&gt;</code></pre>
+<p>The data was retrieved from GSS, and 66 observations were left after cleaning the data.</p>
 </div>
 <div id="model" class="section level2">
 <h2>Model</h2>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="/post/Diabetes2_files/figure-html/unnamed-chunk-3-1.png" width="672" /></p>
+<p><img src="/post/Diabetes2_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="/post/Diabetes2_files/figure-html/unnamed-chunk-3-2.png" width="672" /></p>
+<p><img src="/post/Diabetes2_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="/post/Diabetes2_files/figure-html/unnamed-chunk-3-3.png" width="672" /></p>
+<p><img src="/post/Diabetes2_files/figure-html/unnamed-chunk-4-3.png" width="672" /></p>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="/post/Diabetes2_files/figure-html/unnamed-chunk-3-4.png" width="672" /></p>
+<p><img src="/post/Diabetes2_files/figure-html/unnamed-chunk-4-4.png" width="672" /></p>
 <pre><code>## 
 ## Call:
 ## lm(formula = age_first_diagnosed_with_diabetes ~ sleep_hours, 
@@ -183,7 +198,6 @@ output: pdf_document
 ## Multiple R-squared:  0.1954, Adjusted R-squared:  -0.02542 
 ## F-statistic: 0.8849 on 14 and 51 DF,  p-value: 0.579</code></pre>
 <p>The multiple linear regression model for <span class="math display">\[\hat{Y}\]</span> = 49.41 - 3.2<em>(Sleep hours) + 0.26</em>(Hours spent working per week) - 6.78<em>(Personal Income of $15,000 to $19,999) + 0.82</em>(Personal Income of $20,000 to $29,999) - 3.29<em>(Personal Income of $30,000 to $39,999) - 5.67</em>(Personal Income of $40,000 to $59,999) - 1.96<em>(Personal Income of $5,000 to $9,999) + 5.51</em>(Personal Income of $60,000 to $79,999) - 18.2<em>(Personal Income of Less than $5,000) + 8.75</em>(drink 4-6 times a week) + 5.76<em>(drink everyday) + 0.02 </em>(drink less often than once a month) - 4.65 * (drink once a week) + 1.97*(drink once or twice a month)</p>
-<p>```</p>
 </div>
 <div id="results" class="section level2">
 <h2>Results</h2>
@@ -205,7 +219,11 @@ output: pdf_document
 </div>
 <div id="next-steps" class="section level1">
 <h1>Next Steps</h1>
-<p>Here you discuss subsequent work to be done after this report. This can include next steps in terms of statistical analysis (perhaps there is a more efficient algorithm available, or perhaps there is a caveat in the data that would allow for some new technique). Future steps should also be specified in terms of the study setting (eg. including a follow-up survey on something, or a subsequent study that would complement the conclusions of your report).</p>
+<p>Overall, we believe our team has done an excellent analysis of this topic but we believe there are some further steps we can take to solidify our findings. Moving forward another step we can take is to further delve into how this data was retrieved. For example, learning about how this data was collected and the means of whom it is from. We are sure this data is not a census from every Canadian in 1991 but we believe if we further understood where our sample came from it would help solidify the findings. To continue, we believe it is best to “redo” our study with a data set from 2020 or a more recent year. Since our data is from over 20 years ago, there is a chance that our regressions have changed and it would be best to have our report with the most accurate results.</p>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+<p>Looking back the original goal of our study was to help individuals discover diabetes earlier. The means for this was based on the variables of lifestyle habits. We have used frequentest statistics and have created linear models to show the relationships of sleep hours, work hours per week, income in 12 months, and average alcoholic consumption in 12 months with the average age an individual is diagnosed with diabetes. Our results have shown which variables have a relationship with the age of first diagnosis and which variables we had to accept the null hypothsis of <span class="math inline">\(H_0 = 0.1\)</span>. Moving forward, we have found the slopes of these relationship and the p-values. We believe our study has helped enforce our original goal as anyone utilising our findings may be more cautious with their lifestyle choices.</p>
+</div>
 <div id="references" class="section level2">
 <h2>References</h2>
 </div>
