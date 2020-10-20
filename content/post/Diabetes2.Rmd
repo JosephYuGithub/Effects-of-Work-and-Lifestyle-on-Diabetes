@@ -44,22 +44,19 @@ raw_health <- read_csv("AAsD8pYL_1.csv")
 
 
 ```{r}
-health <- raw_health %>% select(CASEID, dvagegr, dvsex, dvperinc, dvbmimdf, a9cap, g2cap, g3cap, h2hrs, j3, k4, m17cap, m19) 
+
+health <- raw_health %>% select(CASEID, dvagegr, dvsex, dvperinc, dvbmimdf, a9cap, g2cap, g3cap, h2hrs, j3, k4, m17cap) 
 
 
 health <- health %>% clean_names() %>% 
     rename (case_id = caseid, age_first_diagnosed_with_diabetes = a9cap, sex = dvsex,  
-            age = dvagegr, personal_income_12months = dvperinc, BMI = dvbmimdf, 
+            age = dvagegr, income_12months = dvperinc, BMI = dvbmimdf, 
             height = g2cap, weight = g3cap, sleep_hours = h2hrs, 
-            cigarettes_smoke_per_day= j3, average_drink_for_12_months = k4, 
-            work_hours_per_week = m17cap, nightshift_frequency = m19)
-
-#!!!not sure about this function
-
+            average_drink_for_12_months = k4, 
+            work_hours_per_week = m17cap)
 
 
 health <- health %>% 
-  rowwise() %>% 
   mutate(age_first_diagnosed_with_diabetes = case_when(
       age_first_diagnosed_with_diabetes== 96 ~ as.numeric(NA),
       age_first_diagnosed_with_diabetes== 97 ~ as.numeric(NA),
@@ -70,33 +67,37 @@ health <- health %>%
 
 
 health <- health %>% 
-  rowwise() %>% 
-  mutate(BMI = case_when(
-      BMI== 99.9 ~ as.numeric(NA),
-      TRUE ~ as.numeric(BMI)
-))
+  mutate(age = case_when(
+    age== 1 ~ "15 to 17",
+    age== 2 ~ "18 to 19",
+    age== 3 ~ "20 to 24",
+    age== 4 ~ "25 to 29",
+    age== 5 ~ "30 to 34",
+    age== 6 ~ "35 to 39",
+    age== 7 ~ "40 to 44",
+    age== 8 ~ "45 to 49",
+    age== 9 ~ "50 to 54",
+    age== 10 ~ "55 to 59",
+    age== 11 ~ "60 to 64",
+    age== 12 ~ "65 to 69",
+    age== 13 ~ "70 to 74",
+    age== 14 ~ "75 to 79",
+    age== 15 ~ "80 to 99",
+  )) 
 
 
 health <- health %>% 
-  rowwise() %>% 
-  mutate(height = case_when(
-      height== 998 ~ as.numeric(NA),
-      height== 999 ~ as.numeric(NA),
-      TRUE ~ as.numeric(height)
+  mutate(sex = case_when(
+    sex== 1 ~ "Male",
+    sex== 2 ~ "Female"
 ))
 
+health <- na.omit(health)
 
-health <- health %>% 
-  rowwise() %>% 
-  mutate(weight = case_when(
-      weight== 998 ~ as.numeric(NA),
-      weight== 999 ~ as.numeric(NA),
-      TRUE ~ as.numeric(weight)
-))
+#clean dataset for Linear model, which uses working, sleeping rate and income for variable.
 
 
-health <- health %>% 
-  rowwise() %>% 
+health_linear <- health %>% 
   mutate(work_hours_per_week = case_when(
       work_hours_per_week== 97 ~ as.numeric(NA),
       work_hours_per_week== 99 ~ as.numeric(NA),
@@ -104,9 +105,7 @@ health <- health %>%
 ))
 
 
-
-health <- health %>% 
-  rowwise() %>% 
+health_linear <- health_linear %>% 
   mutate(sleep_hours = case_when(
       sleep_hours== 98 ~ as.numeric(NA),
       sleep_hours== 99 ~ as.numeric(NA),
@@ -114,19 +113,78 @@ health <- health %>%
 ))
 
 
-health <- health %>% 
-  rowwise() %>% 
-  mutate(cigarettes_smoke_per_day = case_when(
-      cigarettes_smoke_per_day== 97 ~ as.numeric(NA),
-      cigarettes_smoke_per_day== 99 ~ as.numeric(NA),
-      TRUE ~ as.numeric(cigarettes_smoke_per_day)
+health_linear <- health_linear %>% 
+  mutate(income_12months = case_when(
+      income_12months== 1 ~ "No income",
+      income_12months== 2 ~ "Less than $5,000",
+      income_12months== 3 ~ "$5,000 to 9,999",
+      income_12months== 4 ~ "$10,000 to 14,999",
+      income_12months== 5 ~ "$15,000 to 19,999",
+      income_12months== 6 ~ "$20,000 to 29,999",
+      income_12months== 7 ~ "$30,000 to 39,999",
+      income_12months== 8 ~ "$40,000 to 59,999",
+      income_12months== 9 ~ "$60,000 to 79,999",
+      income_12months== 10 ~ "$80,000 or more",
+      income_12months== 98 ~ as.character(NA),
+      income_12months== 99 ~ as.character(NA)
 ))
 
-health <- na.omit(health)
+health_linear <- health_linear %>% 
+  mutate(average_drink_for_12_months = case_when(
+      average_drink_for_12_months== 1 ~ "Every day",
+      average_drink_for_12_months== 2 ~ "4 - 6 times a week",
+      average_drink_for_12_months== 3 ~ "2 - 3 times a week",
+      average_drink_for_12_months== 4 ~ "Once a week",
+      average_drink_for_12_months== 5 ~ "Once or twice a month",
+      average_drink_for_12_months== 6 ~ "Less often than once a month",
+      average_drink_for_12_months== 0 ~ as.character(NA),
+      average_drink_for_12_months== 8 ~ as.character(NA),
+      average_drink_for_12_months== 9 ~ as.character(NA),
+))
 
 
-health
+
+
+health_linear <- na.omit(health_linear)
+health_linear
+```
+
+
+The data was retrieved from GSS 
+
+
+
+
+## Model
+```{r}
+
+ggplot(data=health_linear, aes(x=sleep_hours, y=age_first_diagnosed_with_diabetes)) +geom_point() + stat_smooth(method=lm) 
+
+ggplot(data=health_linear, aes(x=work_hours_per_week, y=age_first_diagnosed_with_diabetes)) +geom_point() + stat_smooth(method=lm)
+
+ggplot(data = health_linear, aes(x=income_12months, y=age_first_diagnosed_with_diabetes, group = 1)) + geom_point() + stat_smooth(method = lm) + theme(axis.text.x = element_text(angle = 90))
+
+ggplot(data = health_linear, aes(x=average_drink_for_12_months, y=age_first_diagnosed_with_diabetes, group = 1)) + geom_point() + stat_smooth(method = lm) + theme(axis.text.x = element_text(angle = 90))
+
+lmsleep <- lm(age_first_diagnosed_with_diabetes ~ sleep_hours, data = health_linear)
+summary(lmsleep)
+
+lmwork <- lm(age_first_diagnosed_with_diabetes ~ work_hours_per_week, data = health_linear)
+summary(lmwork)
+
+lmincome <- lm(age_first_diagnosed_with_diabetes ~ income_12months, data = health_linear)
+summary(lmincome)
+
+lmdrink <- lm(age_first_diagnosed_with_diabetes ~ average_drink_for_12_months, data = health_linear)
+summary(lmdrink)
+
+lmhealth <- lm(age_first_diagnosed_with_diabetes ~ sleep_hours + work_hours_per_week
+               + income_12months + average_drink_for_12_months, data=health_linear)
+summary(lmhealth)
+
+
 
 
 
 ```
+
