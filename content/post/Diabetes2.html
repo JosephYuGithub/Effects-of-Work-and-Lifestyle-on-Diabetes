@@ -14,44 +14,50 @@ output: pdf_document
 <h1>October 18, 2020</h1>
 <div id="abstract" class="section level2">
 <h2>Abstract</h2>
-<p>Out paper is designed to look at the effects of work and lifestyle on the age at which the participants of the General Social Survey (GSS) on health, are diagnosed with diabetes. Our model will look at a select few variables and attempt to create regression models based on these variables. Our study has concluded that</p>
+<p>Here is where you give a brief (one paragraph overview of your entire paper). This should include some background/introduction, some methodology, results and conclusions.</p>
+<p>Out paper is designed to look at the effects of work and lifestyle on the age at which the recipients of the General Social Survey (GSS) are diagnosed with diabetes. Our model will look at a select few variables and attempt to create regression models based on these variables.</p>
 </div>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
 <p>Here is where you should give insight into the setting and introduce the goal of the analysis. Here you can introduce ideas and basic concepts regarding the study setting and the potential model. Again, this is the introduction, so you should be explaining the importance of the work that is ahead and hopefully build some suspense for the reader. You can also highlight what will be included in the subsequent sections.</p>
-<p>Diabetes is c</p>
-<p>The tidyverse library is an extensive collection of different libraries used commonly in statistical work. In this study, we will be using primarily the dplyr library and the ggplot2 library, both part of the tidyverse collection. The dplyr library is a useful collection that allows us to clean the dataset. We can subset variables using the select function, create new columns using the mutate function, rename column names from their original titles in the GSS survey to more appropriate and descriptive names with the rename function, and group row operations using rowwise. The ggplot2 library allows us to map out our models with a variety of different options, in this study we will be only using a scatterplot using geom_point.</p>
+<p>The tidyverse library is an extensive collection of different libraries used commonly in statistical work. In this study, we will be using primarily the dplyr library and the ggplot2 library, both part of the tidyverse collection. The dplyr library is a useful collection that allows us to clean the dataset. We can subset variables using the select function, create new columns using the mutate function, rename column names from their original titles in the GSS survey to more appropriate and descriptive names with the rename function, and group row operations using rowwise. The ggplot2 library allows us to map out our models with a variety of different options, in this study we will be only using a scatterplot using geom_point. <span class="math inline">\(\\\)</span></p>
 <p>The janitor library</p>
 </div>
 <div id="data" class="section level2">
 <h2>Data</h2>
-<pre><code>## # A tibble: 472 x 11
+<pre><code>## 
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   .default = col_double()
+## )
+## ℹ Use `spec()` for the full column specifications.</code></pre>
+<pre><code>## # A tibble: 66 x 12
 ##    case_id age   sex   income_12months   BMI age_first_diagn… height weight
-##      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;           &lt;dbl&gt; &lt;dbl&gt;            &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-##  1     879 65 t… Male                4  26.2               59    168     74
-##  2    1601 75 t… Male                3  21.7               49    162     57
-##  3    1604 65 t… Male                6  29.3               64    180     95
-##  4    1640 80 t… Male                3  28.3               73    168     80
-##  5    1754 70 t… Fema…              98  20                 70    150     45
-##  6    1809 60 t… Male                4  25.6               55    180     83
-##  7    1818 75 t… Fema…              98  25                 17    160     64
-##  8    1987 75 t… Male                4  30.5               61    183    102
-##  9    2006 65 t… Male                4  27.3               68    168     77
-## 10    2014 45 t… Fema…               6  26.4                1    152     61
-## # … with 462 more rows, and 3 more variables: sleep_hours &lt;dbl&gt;,
-## #   average_drink_for_12_months &lt;dbl&gt;, work_hours_per_week &lt;dbl&gt;</code></pre>
+##      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;           &lt;dbl&gt;            &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1    1809 60 t… Male  $10,000 to 14,…  25.6               55    180     83
+##  2    2014 45 t… Fema… $20,000 to 29,…  26.4                1    152     61
+##  3    2136 35 t… Male  $40,000 to 59,…  34.9               14    175    107
+##  4    2833 40 t… Male  $20,000 to 29,…  30.5               25    168     86
+##  5    3193 40 t… Male  $40,000 to 59,…  23.9               11    183     80
+##  6    4341 45 t… Fema… $20,000 to 29,…  25                 24    160     64
+##  7    4585 50 t… Male  $40,000 to 59,…  24.6               42    178     78
+##  8    5540 60 t… Male  $5,000 to 9,999  26.7               45    163     71
+##  9    6078 35 t… Fema… Less than $5,0…  26                  4    157     64
+## 10    6163 50 t… Fema… $5,000 to 9,999  30.1               50    160     77
+## # … with 56 more rows, and 4 more variables: sleep_hours &lt;dbl&gt;, j3 &lt;dbl&gt;,
+## #   average_drink_for_12_months &lt;chr&gt;, work_hours_per_week &lt;dbl&gt;</code></pre>
 <p>The data was retrieved from GSS</p>
 </div>
 <div id="model" class="section level2">
 <h2>Model</h2>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="/post/Diabetes2_files/figure-html/linear%20regression%20model-1.png" width="672" /></p>
+<p><img src="/post/Diabetes2_files/figure-html/unnamed-chunk-2-1.png" width="672" /></p>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="/post/Diabetes2_files/figure-html/linear%20regression%20model-2.png" width="672" /></p>
+<p><img src="/post/Diabetes2_files/figure-html/unnamed-chunk-2-2.png" width="672" /></p>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="/post/Diabetes2_files/figure-html/linear%20regression%20model-3.png" width="672" /></p>
+<p><img src="/post/Diabetes2_files/figure-html/unnamed-chunk-2-3.png" width="672" /></p>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="/post/Diabetes2_files/figure-html/linear%20regression%20model-4.png" width="672" /></p>
+<p><img src="/post/Diabetes2_files/figure-html/unnamed-chunk-2-4.png" width="672" /></p>
 <pre><code>## 
 ## Call:
 ## lm(formula = age_first_diagnosed_with_diabetes ~ sleep_hours, 
@@ -148,52 +154,51 @@ output: pdf_document
 <pre><code>## 
 ## Call:
 ## lm(formula = age_first_diagnosed_with_diabetes ~ sleep_hours + 
-##     work_hours_per_week + income_12months, data = health_linear)
+##     work_hours_per_week + income_12months + average_drink_for_12_months, 
+##     data = health_linear)
 ## 
 ## Residuals:
 ##     Min      1Q  Median      3Q     Max 
-## -33.504 -16.927   1.518  13.886  31.007 
+## -35.538 -14.752   1.125  12.360  30.925 
 ## 
 ## Coefficients:
-##                                  Estimate Std. Error t value Pr(&gt;|t|)   
-## (Intercept)                       55.2813    17.5082   3.157  0.00256 **
-## sleep_hours                       -3.9337     1.9886  -1.978  0.05285 . 
-## work_hours_per_week                0.2512     0.2152   1.167  0.24810   
-## income_12months$15,000 to 19,999  -5.6606     9.6843  -0.585  0.56122   
-## income_12months$20,000 to 29,999   0.8911     8.8044   0.101  0.91975   
-## income_12months$30,000 to 39,999  -2.9935     9.5469  -0.314  0.75502   
-## income_12months$40,000 to 59,999  -5.5469     8.5316  -0.650  0.51824   
-## income_12months$5,000 to 9,999    -2.9992     9.8277  -0.305  0.76136   
-## income_12months$60,000 to 79,999   4.5976    13.1391   0.350  0.72771   
-## income_12monthsLess than $5,000  -18.3117    10.5923  -1.729  0.08936 . 
+##                                                          Estimate Std. Error
+## (Intercept)                                              49.40844   20.42235
+## sleep_hours                                              -3.20948    2.17969
+## work_hours_per_week                                       0.25612    0.23065
+## income_12months$15,000 to 19,999                         -6.77748   10.59315
+## income_12months$20,000 to 29,999                          0.81942    9.37375
+## income_12months$30,000 to 39,999                         -3.29935   10.28338
+## income_12months$40,000 to 59,999                         -5.66563    9.54966
+## income_12months$5,000 to 9,999                           -1.95859   10.35657
+## income_12months$60,000 to 79,999                          5.51376   14.48161
+## income_12monthsLess than $5,000                         -18.20293   11.06654
+## average_drink_for_12_months4 - 6 times a week             8.75342   14.58795
+## average_drink_for_12_monthsEvery day                      5.75883   14.11863
+## average_drink_for_12_monthsLess often than once a month   0.01742    8.30977
+## average_drink_for_12_monthsOnce a week                   -4.65411   10.40972
+## average_drink_for_12_monthsOnce or twice a month          1.97241    8.48730
+##                                                         t value Pr(&gt;|t|)  
+## (Intercept)                                               2.419   0.0192 *
+## sleep_hours                                              -1.472   0.1470  
+## work_hours_per_week                                       1.110   0.2720  
+## income_12months$15,000 to 19,999                         -0.640   0.5252  
+## income_12months$20,000 to 29,999                          0.087   0.9307  
+## income_12months$30,000 to 39,999                         -0.321   0.7496  
+## income_12months$40,000 to 59,999                         -0.593   0.5556  
+## income_12months$5,000 to 9,999                           -0.189   0.8508  
+## income_12months$60,000 to 79,999                          0.381   0.7050  
+## income_12monthsLess than $5,000                          -1.645   0.1061  
+## average_drink_for_12_months4 - 6 times a week             0.600   0.5511  
+## average_drink_for_12_monthsEvery day                      0.408   0.6851  
+## average_drink_for_12_monthsLess often than once a month   0.002   0.9983  
+## average_drink_for_12_monthsOnce a week                   -0.447   0.6567  
+## average_drink_for_12_monthsOnce or twice a month          0.232   0.8172  
 ## ---
 ## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
 ## 
-## Residual standard error: 18.95 on 56 degrees of freedom
-## Multiple R-squared:  0.1762, Adjusted R-squared:  0.04382 
-## F-statistic: 1.331 on 9 and 56 DF,  p-value: 0.2422</code></pre>
-<p><img src="/post/Diabetes2_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-</div>
-<div id="results" class="section level2">
-<h2>Results</h2>
-<p>Here you will include all results. This includes descriptive statistics, graphs, figures, tables, and model results. Please ensure that everything is well formatted and in a report style. You must also provide an explanation of the results in this section. You can overflow to an Appendix if needed.</p>
-<p>Please ensure that everything is well labelled. So if you have multiple histograms and plots, calling them Figure 1, 2, 3, etc. and referencing them as Figure 1, Figure 2, etc. in your report will be expected. The reader should not get lost in a sea of information. Make sure to have the results be clean, well formatted and digestible.</p>
-</div>
-<div id="discussion" class="section level2">
-<h2>Discussion</h2>
-<p>Here you will discuss conclusions drawn from the results and comment on how it relates to the original goal of the study (which was specified in the Introduction).</p>
-</div>
-</div>
-<div id="weaknesses" class="section level1">
-<h1>Weaknesses</h1>
-<p>When looking through the study, data, and analysis there are two clear weaknesses that we believe are quite notable.</p>
-<p>To begin, the first weakness was from the data that we cleaned and filtered. When looking at our data, we have made slight modifications to all the columns. For example, the “age first diagnosed with diabetes” column has been slightly adjusted to exclude all the values which correspond to labels which do not accurately portray an age. For example. The age values 96 to 99 will not be included since they correspond to those values which are never diagnosed, not applicable, do not know, and not stated; in their respective order. Furthermore, this type of cleaning and filtering has been continued down for other columns including work hours per week, sleep hours, income in the last 12 months, and average number of drinks in the last 12 months. As a result of all of this, our data has been significantly decreased from the original quantity we received from CHASS.</p>
-<p>To continue, the other weakness lies with outliers. Throughout our models, it is clear that there are many outliers within our data. This weakness has a major impact on the linear regression models because the outliers influence the slopes by raising/lowering them. The other models are still influenced as well. If we removed the outliers, our models would be cleaner and much more accurate.</p>
-</div>
-<div id="next-steps" class="section level1">
-<h1>Next Steps</h1>
-<p>Here you discuss subsequent work to be done after this report. This can include next steps in terms of statistical analysis (perhaps there is a more efficient algorithm available, or perhaps there is a caveat in the data that would allow for some new technique). Future steps should also be specified in terms of the study setting (eg. including a follow-up survey on something, or a subsequent study that would complement the conclusions of your report).</p>
-<div id="references" class="section level2">
-<h2>References</h2>
+## Residual standard error: 19.62 on 51 degrees of freedom
+## Multiple R-squared:  0.1954, Adjusted R-squared:  -0.02542 
+## F-statistic: 0.8849 on 14 and 51 DF,  p-value: 0.579</code></pre>
 </div>
 </div>
