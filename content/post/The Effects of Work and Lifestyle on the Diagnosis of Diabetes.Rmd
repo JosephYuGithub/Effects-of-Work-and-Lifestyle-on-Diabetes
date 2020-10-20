@@ -2,7 +2,7 @@
 title: "The Effects of Work and Lifestyle on Diagnosis of Diabetes"
 author: "Group 12"
 date: "2020-10-19"
-output: pdf_document
+output: html_document
 ---
 
 # Chae Bae, Pritam Sinha, Chen Hao Yu
@@ -187,7 +187,7 @@ Our final linear regression we have explored is "Average amount of alcoholic bev
 
 When looking through the study, data, and analysis there are two clear weaknesses that we believe are quite notable. 
 
-To begin, the first weakness was from the data that we cleaned and filtered.  When looking at our data, we have made slight modifications to all the columns. For example, the “age first diagnosed with diabetes” column has been slightly adjusted to exclude all the values which correspond to labels which do not accurately portray an age. For example. The age values 96 to 99 will not be included since they correspond to those values which are never diagnosed, not applicable, do not know, and not stated; in their respective order. Furthermore, this type of cleaning and filtering has been continued down for other columns including work hours per week, sleep hours, income in the last 12 months, and average number of drinks in the last 12 months. As a result of all of this, our data has been significantly decreased from the original quantity we received from CHASS. 
+To begin, the first weakness was from the data that we cleaned and filtered.  When looking at our data, we have made slight modifications to all the columns. For example, the "age first diagnosed with diabetes" column has been slightly adjusted to exclude all the values which correspond to labels which do not accurately portray an age. For example. The age values 96 to 99 will not be included since they correspond to those values which are never diagnosed, not applicable, do not know, and not stated; in their respective order. Furthermore, this type of cleaning and filtering has been continued down for other columns including work hours per week, sleep hours, income in the last 12 months, and average number of drinks in the last 12 months. As a result of all of this, our data has been significantly decreased from the original quantity we received from CHASS. 
 
 To continue, the other weakness lies with outliers. Throughout our models, it is clear that there are many outliers within our data. This weakness has a major impact on the linear regression models because the outliers influence the slopes by raising/lowering them. The other models are still influenced as well. If we removed the outliers, our models would be cleaner and much more accurate.
 
