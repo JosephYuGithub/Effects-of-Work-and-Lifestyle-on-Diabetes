@@ -15,14 +15,11 @@ Out paper is designed to look at the effects of work and lifestyle on the age at
 
 ## Introduction
 
-According to the World Health Organization, diabetes is currently on the rise, with 422 million people diagnosed with the condition in 2014, up from 108 million in 1980. Adults with diabetes are more likely to be at risk of heart attacks and strokes, and if conditions worsen, could lead to limb amputations and blindness. Diabetes sits as the 9th deadliest illness in the world at a staggering death toll of 1.37 million in 2017, that is more than HIV/AIDS and malaria!
+According to the World Health Organization, diabetes is quickly on the rise with 422 million people diagnosed with the condition in 2014, up from 108 million in 1980. Adults with diabetes are more likely to be at risk of heart attacks and strokes, and if conditions worsen, could lead to limb amputations and blindness. Diabetes sits as the 9th deadliest illness in the world at a staggering death toll of 1.37 million in 2017, that is more than HIV/AIDS and malaria!
 
-Currently, diabetes is tested and diagnosed through blood sugar tests, and can be treated through regular monitoring of blood sugar, medication, healthy diet, and regular exercise. Therefore, it is imperative that individuals are properly tested for diabetes as soon as possible to avoid worsening conditions.
+Currently, diabetes is tested and diagnosed through blood sugar tests, and can be treated through regular monitoring of blood sugar, medication, healthy diet, and regular exercise. Therefore, it is imperative that individuals are properly tested for diabetes as soon as possible to avoid worsening conditions. Our study is to establish any correlations between the hours of sleep, working hours, income levels, and alcohol consumption to better predict the age of diagnosis of diabetes. Do individuals with shorter sleep hours tend to be diagnosed with diabetes earlier than individuals who sleep longer? Does alcohol consumption have an effect on the age of diagnosis. Our study will attempt to answer those questions.
 
 Lastly, I will be mentioning the R libraries used to clean and model our data. The tidyverse library is an extensive collection of different libraries used commonly in statistical work. In this study, we will be using primarily the dplyr library and the ggplot2 library, both part of the tidyverse collection. The dplyr library is a useful collection that allows us to clean the dataset. We can subset variables using the select function, create new columns using the mutate function, rename column names from their original titles in the GSS survey to more appropriate and descriptive names with the rename function, and group row operations using rowwise. The ggplot2 library allows us to map out our models with a variety of different options, in this study we will be only using a scatterplot using geom_point. Additionally, the Janitor library will be used for the clean_names function, which will help us return names in lowercase form, and substitute spaces with underscores.
-
-
-
 
 ## Data
 
@@ -142,37 +139,55 @@ ggplot(data = health_linear, aes(x=income_12months, y=age_first_diagnosed_with_d
 
 ggplot(data = health_linear, aes(x=average_drink_for_12_months, y=age_first_diagnosed_with_diabetes, group = 1)) + geom_point() + stat_smooth(method = lm) + theme(axis.text.x = element_text(angle = 90)) + ggtitle("Frequency of drinking alcoholic beverages in past 12 months vs Age first diagnosed with diabetes (Fig.4)") +xlab("Frequency of drinking alcoholic beverages in past 12 months")+ ylab("Age first diagnosed with diabetes")
 
+#Regression Model Parameters
 lmsleep <- lm(age_first_diagnosed_with_diabetes ~ sleep_hours, data = health_linear)
 summary(lmsleep)
-
+```
+The linear regression model for $\hat{Y}$ =  57.71 - 3.46*Sleep Hours, where $\hat{Y}$ is the expected age first diagnosed with diabetes.
+```{r}
 lmwork <- lm(age_first_diagnosed_with_diabetes ~ work_hours_per_week, data = health_linear)
 summary(lmwork)
-
+```
+The linear regression model for $\hat{Y}$ =  21.41 - 0.32*Hours spent working per week, where $\hat{Y}$ is the expected age first diagnosed with diabetes.
+```{r}
 lmincome <- lm(age_first_diagnosed_with_diabetes ~ income_12months, data = health_linear)
 summary(lmincome)
-
+```
+The multiple linear regression model for $\hat{Y}$ = 37.5 - 4.5 * (Personal Income of $15,000 to $19,999) + 0.68 * (Personal Income of $20,000 to $29,999) - 4.37 * (Personal Income of $30,000 to $39,999) - 4.34 * (Personal Income of $40,000 to $59,999) - 6.06 * (Personal Income of $5,000 to $9,999) + 10.83 * (Personal Income of $60,000 to $79,999) - 19.83 * (Personal Income of Less than $5,000), where $\hat{Y}$ is the expected age first diagnosed with diabetes.
+```{r}
 lmdrink <- lm(age_first_diagnosed_with_diabetes ~ average_drink_for_12_months, data = health_linear)
 summary(lmdrink)
-
+```
+The multiple linear regression model for $$\hat{Y} = 30.6 + 14.07*(drink 4-6 times a week) + 17.4*(drink everyday) + 2.15 *(drink less often than once a month) - 0.85 * (drink once a week) + 3.07*(drink once or twice a month) $$
+```{r}
 lmhealth <- lm(age_first_diagnosed_with_diabetes ~ sleep_hours + work_hours_per_week
                + income_12months + average_drink_for_12_months, data=health_linear)
 summary(lmhealth)
+
+```
+The multiple linear regression model for $$\hat{Y}$$ = 49.41 - 3.2*(Sleep hours) + 0.26*(Hours spent working per week) - 6.78*(Personal Income of $15,000 to $19,999) + 0.82*(Personal Income of $20,000 to $29,999) - 3.29*(Personal Income of $30,000 to $39,999) - 5.67*(Personal Income of $40,000 to $59,999) - 1.96*(Personal Income of $5,000 to $9,999) + 5.51*(Personal Income of $60,000 to $79,999) - 18.2*(Personal Income of Less than $5,000) + 8.75*(drink 4-6 times a week) + 5.76*(drink everyday) + 0.02 *(drink less often than once a month) - 4.65 * (drink once a week) + 1.97*(drink once or twice a month)
 
 
 
 
 
 ```
+
+
+
 ## Results
 
-Here you will include all results. This includes descriptive statistics, graphs, figures, tables, and model results. Please ensure that everything is well formatted and in a report style. You must also provide an explanation of the results in this section. You can overflow to an Appendix if needed. 
+Before we begin going over the results, we must reiterate the null hypothesis of 0 ($H_0 = 0.1$). Our null hypothesis states the slope of the age first diagnosed with diabetes and any of the other factors have a slope of 0. This means these two variables have no affect with each other. 
 
-Please ensure that everything is well labelled. So if you have multiple histograms and plots, calling them Figure 1, 2, 3, etc. and referencing them as Figure 1, Figure 2, etc. in your report will be expected. The reader should not get lost in a sea of information. Make sure to have the results be clean, well formatted and digestible.
+To begin, we will look at the results found in the first linear regression of "Hours spent sleeping each night vs Age first diagnosed with diabetes (Fig.1)" From this model we can see that our regression line is clearly sloping downwards. From this graph the result we have shown is clear that the more sleeping hours an individual receives each night, the lower their age is when they were first diagnosed with diabetes. Furthermore, the slope we have discovered which justifies this result is -3.46. To continue, our results have shown a discovery of the p-value of 0.0754. This is extremely important as a result of our p-value being so small and less than the null hypothesis we can say that we are successful in rejecting the null hypothesis and that sleep hours does in fact influence the age an individual was first diagnosed with diabetes. 
+
+Our next linear regression is "Hours spent working per week vs Age first diagnosed with diabetes (Fig.2)." From this model we can see a linear regression sloping upwards. This tells us that the more hours an individual works in a given week, the age of their first diagnosis with diabetes increases. The slope our model has shown us is 0.3176. This slope helps to justify our interpretation, a positive slope matches with the idea the age an individual is first diagnosed with diabetes increases. Moving on, we will discuss the p-value of 0.09287. Once again, this p-value is extremely small and much smaller than our null hypothesis. This means that we are successful in rejecting the null hypothesis once again. This is is our evidence that the work hours per week plays a role in influencing the age an individual is first diagnosed with diabetes.
+
+The third linear regression we will be taking a look at is "Personal income during past 12 months vs Age first diagnosed with diabetes(Fig.3)". This is a rather unique linear regression compared with our previous two as the regression line for this plot is on the flatter side. We see that the data points are scattered all over the place and there is clearly no trend. The intercept we have found is 37.5 years. This is the average age we see for an individual first diagnosed with diabetes. The income bracket 10,000 to 14,999 has no slope present. This means that the average age an individual is first diagnosed with diabetes for that group is the regular intercept of 37.5 years. In all other years we take the slope and add it to the intercept to find the average age an individual in that bracket. For example, we see that the income bracket of 15,000 to 19,999 has an average age of 33 years for their first diagnoses of diabetes. We notice that many of the income brackets have an average age like this. An interesting to note is that the income bracket of 60,000 to 79,999 has a very high average age of first diagnoses of about 48.3 years. Moving on, The p-values we have discovered from our data are almost all very large and much greater than 0.1. This means that we must accept the null hypothesis and that the income in 12 months and the age an individual is first diagnosed with diabetes have no relation with each other. Similar to what was mentioned in the abstract. Although there is one income bracket in which we are successful in rejecting the null hypothesis. This income bracket is: less than $5,000. This means that within this income bracket and the age an individual is first diagnosed with diabetes are related with one another. 
+
+Our final linear regression we have explored is "Average amount of alcoholic beverages drank vs Age first diagnosed with diabetes (Fig.4)". This model is similar to that of Fig. 3 in that we do not immediately see a clear relationship. Here we see that the intercept estimate is 30.6 years. This estimate corresponds with the group that drinks 2 - 3 times a week. Similar as before we take the intercept and add the slope to it to discover the average age an individual is first diagnosed with diabetes. We have discovered that those who drink everyday have the highest average diagnoses age of 48 while those who drink once a week have the lowest average diagnoses age of 29.75 years. Moving forward with the p-value, we have discovered some extremely large p-values. These p-values are clearly much larger than 0.1 and it is evident that we must accept the null hypothesis meaning that alcohol consumption and the age an individual is first diagnosed with diabetes have no relation with one another.
 
 ## Discussion
-
-Here you will discuss conclusions drawn from the results and comment on how it relates to the original goal of the study (which was specified in the Introduction).
-
 # Weaknesses
 
 When looking through the study, data, and analysis there are two clear weaknesses that we believe are quite notable. 
