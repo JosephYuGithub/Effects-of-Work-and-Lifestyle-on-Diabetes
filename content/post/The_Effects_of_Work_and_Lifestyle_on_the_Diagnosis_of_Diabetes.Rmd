@@ -2,7 +2,7 @@
 title: "The Effects of Work and Lifestyle on Diagnosis of Diabetes"
 author: "Group 12"
 date: "2020-10-19"
-output: html_document
+output: pdf_document
 ---
 
 # Chae Bae, Pritam Sinha, Chen Hao Yu
@@ -187,7 +187,7 @@ Our final linear regression we have explored is "Average amount of alcoholic bev
 
 When looking through the study, data, and analysis there are two clear weaknesses that we believe are quite notable. 
 
-To begin, the first weakness was from the data that we cleaned and filtered.  When looking at our data, we have made slight modifications to all the columns. For example, the "age first diagnosed with diabetes" column has been slightly adjusted to exclude all the values which correspond to labels which do not accurately portray an age. For example. The age values 96 to 99 will not be included since they correspond to those values which are never diagnosed, not applicable, do not know, and not stated; in their respective order. Furthermore, this type of cleaning and filtering has been continued down for other columns including work hours per week, sleep hours, income in the last 12 months, and average number of drinks in the last 12 months. As a result of all of this, our data has been significantly decreased from the original quantity we received from CHASS. 
+To begin, the first weakness was from the data that we cleaned and filtered.  When looking at our data, we have made slight modifications to all the columns. For example, the the "age first diagnosed with diabetes" column has been slightly adjusted to exclude all the values which correspond to labels which do not accurately portray an age. For example. The age values 96 to 99 will not be included since they correspond to those values which are never diagnosed, not applicable, do not know, and not stated; in their respective order. Furthermore, this type of cleaning and filtering has been continued down for other columns including work hours per week, sleep hours, income in the last 12 months, and average number of drinks in the last 12 months. As a result of all of this, our data has been significantly decreased from the original quantity we received from CHASS. 
 
 To continue, the other weakness lies with outliers. Throughout our models, it is clear that there are many outliers within our data. This weakness has a major impact on the linear regression models because the outliers influence the slopes by raising/lowering them. The other models are still influenced as well. If we removed the outliers, our models would be cleaner and much more accurate.
 
@@ -201,18 +201,18 @@ Looking back the original goal of our study was to help individuals discover dia
 
 ## References
 
-Hadley Wickham and Mara Averick and Jennifer Bryan and Winston Chang and Lucy D'Agostino McGowan and Romain François and Garrett Grolemund and Alex Hayes and Lionel Henry and Jim Hester and Max Kuhn and Thomas Lin Pedersen and Evan Miller and Stephan Milton Bache and Kirill Müller and Jeroen Ooms and David Robinson and Dana Paige Seidel and Vitalie Spinu and Kohske Takahashi and Davis Vaughan and Claus Wilke and Kara Woo and Hiroaki Yutani. "Welcome to the {tidyverse}" Journal of Open Source Software, vol. 4, no. 43, pp. 1686, doi. 10.21105/joss.01686
+Hadley Wickham and Mara Averick and Jennifer Bryan and Winston Chang and Lucy D'Agostino McGowan and Romain FranÃ§ois and Garrett Grolemund and Alex Hayes and Lionel Henry and Jim Hester and Max Kuhn and Thomas Lin Pedersen and Evan Miller and Stephan Milton Bache and Kirill MÃ¼ller and Jeroen Ooms and David Robinson and Dana Paige Seidel and Vitalie Spinu and Kohske Takahashi and Davis Vaughan and Claus Wilke and Kara Woo and Hiroaki Yutani. "Welcome to the {tidyverse}" Journal of Open Source Software, vol. 4, no. 43, pp. 1686, doi. 10.21105/joss.01686
     
-Firke, Sam. "janitor: Simple Tools for Examining and Cleaning Dirty Data", R package version 2.0.1, 2020, 
-https://CRAN.R-project.org/package=janitor
+Firke, Sam. "janitor: Simple Tools for Examining and Cleaning Dirty Data", R package version 2.0.1, 2020,
+(https://CRAN.R-project.org/package=janitor)
 
 Wickham, Hadley. "ggplot2: Elegant Graphics for Data Analysis", Springer-Verlag New York, 2016. isbn 978-3-319-24277-4, 
 https://ggplot2.tidyverse.org
   
-Hadley Wickham and Romain François and Lionel Henry and Kirill Müller. "dplyr: A Grammar of Data Manipulation" , R package version 1.0.2, 2020, 
+Hadley Wickham and Romain FranÃ§ois and Lionel Henry and Kirill MÃ¼ller. "dplyr: A Grammar of Data Manipulation" , R package version 1.0.2, 2020, 
 https://CRAN.R-project.org/package=dplyr
 
-Paul-Christian Bürkner, "An R Package for Bayesian Multilevel Models Using Stan." The R Journal, 2017. isbn 395-411, doi 10.18637/jss.v080.i01. 
+Paul-Christian BÃ¼rkner, "An R Package for Bayesian Multilevel Models Using Stan." The R Journal, 2017. isbn 395-411, doi 10.18637/jss.v080.i01. 
 
 General social surveys, "General social survey on health". Computing in the Humanities and Social Sciences, Faculty of Arts & Science, University of Toronto. 
 http://www.chass.utoronto.ca/
@@ -230,6 +230,14 @@ https://ourworldindata.org/causes-of-death#:~:text=Cardiovascular%20diseases%20a
 
 Mayo Clinic. "Type 2 Diabetes". 2020
 https://www.mayoclinic.org/diseases-conditions/type-2-diabetes/diagnosis-treatment/drc-20351199
+
+
+
+
+
+
+
+
 
 
 

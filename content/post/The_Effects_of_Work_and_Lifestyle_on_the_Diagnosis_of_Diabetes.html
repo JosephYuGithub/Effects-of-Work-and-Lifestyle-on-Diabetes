@@ -1,3 +1,10 @@
+---
+title: "The Effects of Work and Lifestyle on Diagnosis of Diabetes"
+author: "Group 12"
+date: "2020-10-19"
+output: pdf_document
+---
+
 
 
 <div id="chae-bae-pritam-sinha-chen-hao-yu" class="section level1">
@@ -37,13 +44,13 @@
 <div id="model" class="section level2">
 <h2>Model</h2>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="The-Effects-of-Work-and-Lifestyle-on-the-Diagnosis-of-Diabetes_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
+<p><img src="/post/The_Effects_of_Work_and_Lifestyle_on_the_Diagnosis_of_Diabetes_files/figure-html/unnamed-chunk-4-1.png" width="672" /></p>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="The-Effects-of-Work-and-Lifestyle-on-the-Diagnosis-of-Diabetes_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
+<p><img src="/post/The_Effects_of_Work_and_Lifestyle_on_the_Diagnosis_of_Diabetes_files/figure-html/unnamed-chunk-4-2.png" width="672" /></p>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="The-Effects-of-Work-and-Lifestyle-on-the-Diagnosis-of-Diabetes_files/figure-html/unnamed-chunk-4-3.png" width="672" /></p>
+<p><img src="/post/The_Effects_of_Work_and_Lifestyle_on_the_Diagnosis_of_Diabetes_files/figure-html/unnamed-chunk-4-3.png" width="672" /></p>
 <pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="The-Effects-of-Work-and-Lifestyle-on-the-Diagnosis-of-Diabetes_files/figure-html/unnamed-chunk-4-4.png" width="672" /></p>
+<p><img src="/post/The_Effects_of_Work_and_Lifestyle_on_the_Diagnosis_of_Diabetes_files/figure-html/unnamed-chunk-4-4.png" width="672" /></p>
 <pre><code>## 
 ## Call:
 ## lm(formula = age_first_diagnosed_with_diabetes ~ sleep_hours, 
@@ -207,7 +214,7 @@
 <div id="weaknesses" class="section level1">
 <h1>Weaknesses</h1>
 <p>When looking through the study, data, and analysis there are two clear weaknesses that we believe are quite notable.</p>
-<p>To begin, the first weakness was from the data that we cleaned and filtered. When looking at our data, we have made slight modifications to all the columns. For example, the “age first diagnosed with diabetes” column has been slightly adjusted to exclude all the values which correspond to labels which do not accurately portray an age. For example. The age values 96 to 99 will not be included since they correspond to those values which are never diagnosed, not applicable, do not know, and not stated; in their respective order. Furthermore, this type of cleaning and filtering has been continued down for other columns including work hours per week, sleep hours, income in the last 12 months, and average number of drinks in the last 12 months. As a result of all of this, our data has been significantly decreased from the original quantity we received from CHASS.</p>
+<p>To begin, the first weakness was from the data that we cleaned and filtered. When looking at our data, we have made slight modifications to all the columns. For example, the the “age first diagnosed with diabetes” column has been slightly adjusted to exclude all the values which correspond to labels which do not accurately portray an age. For example. The age values 96 to 99 will not be included since they correspond to those values which are never diagnosed, not applicable, do not know, and not stated; in their respective order. Furthermore, this type of cleaning and filtering has been continued down for other columns including work hours per week, sleep hours, income in the last 12 months, and average number of drinks in the last 12 months. As a result of all of this, our data has been significantly decreased from the original quantity we received from CHASS.</p>
 <p>To continue, the other weakness lies with outliers. Throughout our models, it is clear that there are many outliers within our data. This weakness has a major impact on the linear regression models because the outliers influence the slopes by raising/lowering them. The other models are still influenced as well. If we removed the outliers, our models would be cleaner and much more accurate.</p>
 </div>
 <div id="next-steps" class="section level1">
@@ -219,14 +226,14 @@
 </div>
 <div id="references" class="section level2">
 <h2>References</h2>
-<p>Hadley Wickham and Mara Averick and Jennifer Bryan and Winston Chang and Lucy D’Agostino McGowan and Romain François and Garrett Grolemund and Alex Hayes and Lionel Henry and Jim Hester and Max Kuhn and Thomas Lin Pedersen and Evan Miller and Stephan Milton Bache and Kirill Müller and Jeroen Ooms and David Robinson and Dana Paige Seidel and Vitalie Spinu and Kohske Takahashi and Davis Vaughan and Claus Wilke and Kara Woo and Hiroaki Yutani. “Welcome to the {tidyverse}” Journal of Open Source Software, vol. 4, no. 43, pp. 1686, doi. 10.21105/joss.01686</p>
+<p>Hadley Wickham and Mara Averick and Jennifer Bryan and Winston Chang and Lucy D’Agostino McGowan and Romain FranÃ§ois and Garrett Grolemund and Alex Hayes and Lionel Henry and Jim Hester and Max Kuhn and Thomas Lin Pedersen and Evan Miller and Stephan Milton Bache and Kirill MÃ¼ller and Jeroen Ooms and David Robinson and Dana Paige Seidel and Vitalie Spinu and Kohske Takahashi and Davis Vaughan and Claus Wilke and Kara Woo and Hiroaki Yutani. “Welcome to the {tidyverse}” Journal of Open Source Software, vol. 4, no. 43, pp. 1686, doi. 10.21105/joss.01686</p>
 <p>Firke, Sam. “janitor: Simple Tools for Examining and Cleaning Dirty Data”, R package version 2.0.1, 2020,
-<a href="https://CRAN.R-project.org/package=janitor" class="uri">https://CRAN.R-project.org/package=janitor</a></p>
+(<a href="https://CRAN.R-project.org/package=janitor" class="uri">https://CRAN.R-project.org/package=janitor</a>)</p>
 <p>Wickham, Hadley. “ggplot2: Elegant Graphics for Data Analysis”, Springer-Verlag New York, 2016. isbn 978-3-319-24277-4,
 <a href="https://ggplot2.tidyverse.org" class="uri">https://ggplot2.tidyverse.org</a></p>
-<p>Hadley Wickham and Romain François and Lionel Henry and Kirill Müller. “dplyr: A Grammar of Data Manipulation” , R package version 1.0.2, 2020,
+<p>Hadley Wickham and Romain FranÃ§ois and Lionel Henry and Kirill MÃ¼ller. “dplyr: A Grammar of Data Manipulation” , R package version 1.0.2, 2020,
 <a href="https://CRAN.R-project.org/package=dplyr" class="uri">https://CRAN.R-project.org/package=dplyr</a></p>
-<p>Paul-Christian Bürkner, “An R Package for Bayesian Multilevel Models Using Stan.” The R Journal, 2017. isbn 395-411, doi 10.18637/jss.v080.i01.</p>
+<p>Paul-Christian BÃ¼rkner, “An R Package for Bayesian Multilevel Models Using Stan.” The R Journal, 2017. isbn 395-411, doi 10.18637/jss.v080.i01.</p>
 <p>General social surveys, “General social survey on health”. Computing in the Humanities and Social Sciences, Faculty of Arts &amp; Science, University of Toronto.
 <a href="http://www.chass.utoronto.ca/" class="uri">http://www.chass.utoronto.ca/</a></p>
 <p>“The R Project for Statistical Computing”,
