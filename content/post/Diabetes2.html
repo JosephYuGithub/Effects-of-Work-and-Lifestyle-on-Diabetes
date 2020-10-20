@@ -14,186 +14,39 @@ output: pdf_document
 <h1>October 18, 2020</h1>
 <div id="abstract" class="section level2">
 <h2>Abstract</h2>
-<p>Out paper is designed to look at the effects of work and lifestyle on the age at which the participants of the General Social Survey (GSS) on health, are diagnosed with diabetes. Our model will look at a select few variables and attempt to create regression models based on these variables. Our study has concluded that</p>
+<p>Here is where you give a brief (one paragraph overview of your entire paper). This should include some background/introduction, some methodology, results and conclusions.</p>
+<p>Out paper is designed to look at the effects of work and lifestyle on the age at which the recipients of the General Social Survey (GSS) are diagnosed with diabetes. Our model will look at a select few variables and attempt to create regression models based on these variables.</p>
 </div>
 <div id="introduction" class="section level2">
 <h2>Introduction</h2>
 <p>Here is where you should give insight into the setting and introduce the goal of the analysis. Here you can introduce ideas and basic concepts regarding the study setting and the potential model. Again, this is the introduction, so you should be explaining the importance of the work that is ahead and hopefully build some suspense for the reader. You can also highlight what will be included in the subsequent sections.</p>
-<p>Diabetes is c</p>
-<p>The tidyverse library is an extensive collection of different libraries used commonly in statistical work. In this study, we will be using primarily the dplyr library and the ggplot2 library, both part of the tidyverse collection. The dplyr library is a useful collection that allows us to clean the dataset. We can subset variables using the select function, create new columns using the mutate function, rename column names from their original titles in the GSS survey to more appropriate and descriptive names with the rename function, and group row operations using rowwise. The ggplot2 library allows us to map out our models with a variety of different options, in this study we will be only using a scatterplot using geom_point.</p>
+<p>The tidyverse library is an extensive collection of different libraries used commonly in statistical work. In this study, we will be using primarily the dplyr library and the ggplot2 library, both part of the tidyverse collection. The dplyr library is a useful collection that allows us to clean the dataset. We can subset variables using the select function, create new columns using the mutate function, rename column names from their original titles in the GSS survey to more appropriate and descriptive names with the rename function, and group row operations using rowwise. The ggplot2 library allows us to map out our models with a variety of different options, in this study we will be only using a scatterplot using geom_point. <span class="math inline">\(\\\)</span></p>
 <p>The janitor library</p>
 </div>
 <div id="data" class="section level2">
 <h2>Data</h2>
-<pre><code>## # A tibble: 472 x 11
-##    case_id age   sex   income_12months   BMI age_first_diagn… height weight
-##      &lt;dbl&gt; &lt;chr&gt; &lt;chr&gt;           &lt;dbl&gt; &lt;dbl&gt;            &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
-##  1     879 65 t… Male                4  26.2               59    168     74
-##  2    1601 75 t… Male                3  21.7               49    162     57
-##  3    1604 65 t… Male                6  29.3               64    180     95
-##  4    1640 80 t… Male                3  28.3               73    168     80
-##  5    1754 70 t… Fema…              98  20                 70    150     45
-##  6    1809 60 t… Male                4  25.6               55    180     83
-##  7    1818 75 t… Fema…              98  25                 17    160     64
-##  8    1987 75 t… Male                4  30.5               61    183    102
-##  9    2006 65 t… Male                4  27.3               68    168     77
-## 10    2014 45 t… Fema…               6  26.4                1    152     61
-## # … with 462 more rows, and 3 more variables: sleep_hours &lt;dbl&gt;,
-## #   average_drink_for_12_months &lt;dbl&gt;, work_hours_per_week &lt;dbl&gt;</code></pre>
-<p>The data was retrieved from GSS</p>
-</div>
-<div id="model" class="section level2">
-<h2>Model</h2>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="/post/Diabetes2_files/figure-html/linear%20regression%20model-1.png" width="672" /></p>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="/post/Diabetes2_files/figure-html/linear%20regression%20model-2.png" width="672" /></p>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="/post/Diabetes2_files/figure-html/linear%20regression%20model-3.png" width="672" /></p>
-<pre><code>## `geom_smooth()` using formula &#39;y ~ x&#39;</code></pre>
-<p><img src="/post/Diabetes2_files/figure-html/linear%20regression%20model-4.png" width="672" /></p>
 <pre><code>## 
-## Call:
-## lm(formula = age_first_diagnosed_with_diabetes ~ sleep_hours, 
-##     data = health_linear)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -32.493 -19.378   3.817  16.007  31.507 
-## 
-## Coefficients:
-##             Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)   57.711     13.576   4.251 7.06e-05 ***
-## sleep_hours   -3.460      1.914  -1.807   0.0754 .  
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 19.05 on 64 degrees of freedom
-## Multiple R-squared:  0.04855,    Adjusted R-squared:  0.03369 
-## F-statistic: 3.266 on 1 and 64 DF,  p-value: 0.07544</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = age_first_diagnosed_with_diabetes ~ work_hours_per_week, 
-##     data = health_linear)
-## 
-## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -33.07 -18.10   3.21  15.33  34.06 
-## 
-## Coefficients:
-##                     Estimate Std. Error t value Pr(&gt;|t|)   
-## (Intercept)          21.4074     7.4934   2.857  0.00576 **
-## work_hours_per_week   0.3176     0.1862   1.706  0.09287 . 
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 19.1 on 64 degrees of freedom
-## Multiple R-squared:  0.0435, Adjusted R-squared:  0.02855 
-## F-statistic:  2.91 on 1 and 64 DF,  p-value: 0.09287</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = age_first_diagnosed_with_diabetes ~ income_12months, 
-##     data = health_linear)
-## 
-## Residuals:
-##    Min     1Q Median     3Q    Max 
-## -37.18 -15.13   4.09  13.77  35.33 
-## 
-## Coefficients:
-##                                  Estimate Std. Error t value Pr(&gt;|t|)    
-## (Intercept)                       37.5000     6.8586   5.468 1.01e-06 ***
-## income_12months$15,000 to 19,999  -4.5000     9.6995  -0.464   0.6444    
-## income_12months$20,000 to 29,999   0.6818     9.0139   0.076   0.9400    
-## income_12months$30,000 to 39,999  -4.3750     9.6995  -0.451   0.6536    
-## income_12months$40,000 to 59,999  -4.3462     8.7171  -0.499   0.6200    
-## income_12months$5,000 to 9,999    -6.0556     9.4262  -0.642   0.5231    
-## income_12months$60,000 to 79,999  10.8333    13.1331   0.825   0.4128    
-## income_12monthsLess than $5,000  -19.8333    10.4766  -1.893   0.0633 .  
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 19.4 on 58 degrees of freedom
-## Multiple R-squared:  0.1056, Adjusted R-squared:  -0.002389 
-## F-statistic: 0.9779 on 7 and 58 DF,  p-value: 0.4561</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = age_first_diagnosed_with_diabetes ~ average_drink_for_12_months, 
-##     data = health_linear)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -31.750 -16.712   2.792  15.037  32.250 
-## 
-## Coefficients:
-##                                                         Estimate Std. Error
-## (Intercept)                                               30.600      6.216
-## average_drink_for_12_months4 - 6 times a week             14.067     12.941
-## average_drink_for_12_monthsEvery day                      17.400     12.941
-## average_drink_for_12_monthsLess often than once a month    2.150      7.399
-## average_drink_for_12_monthsOnce a week                    -0.850      9.325
-## average_drink_for_12_monthsOnce or twice a month           3.067      7.753
-##                                                         t value Pr(&gt;|t|)    
-## (Intercept)                                               4.922 7.02e-06 ***
-## average_drink_for_12_months4 - 6 times a week             1.087    0.281    
-## average_drink_for_12_monthsEvery day                      1.345    0.184    
-## average_drink_for_12_monthsLess often than once a month   0.291    0.772    
-## average_drink_for_12_monthsOnce a week                   -0.091    0.928    
-## average_drink_for_12_monthsOnce or twice a month          0.396    0.694    
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 19.66 on 60 degrees of freedom
-## Multiple R-squared:  0.0498, Adjusted R-squared:  -0.02938 
-## F-statistic: 0.629 on 5 and 60 DF,  p-value: 0.6783</code></pre>
-<pre><code>## 
-## Call:
-## lm(formula = age_first_diagnosed_with_diabetes ~ sleep_hours + 
-##     work_hours_per_week + income_12months, data = health_linear)
-## 
-## Residuals:
-##     Min      1Q  Median      3Q     Max 
-## -33.504 -16.927   1.518  13.886  31.007 
-## 
-## Coefficients:
-##                                  Estimate Std. Error t value Pr(&gt;|t|)   
-## (Intercept)                       55.2813    17.5082   3.157  0.00256 **
-## sleep_hours                       -3.9337     1.9886  -1.978  0.05285 . 
-## work_hours_per_week                0.2512     0.2152   1.167  0.24810   
-## income_12months$15,000 to 19,999  -5.6606     9.6843  -0.585  0.56122   
-## income_12months$20,000 to 29,999   0.8911     8.8044   0.101  0.91975   
-## income_12months$30,000 to 39,999  -2.9935     9.5469  -0.314  0.75502   
-## income_12months$40,000 to 59,999  -5.5469     8.5316  -0.650  0.51824   
-## income_12months$5,000 to 9,999    -2.9992     9.8277  -0.305  0.76136   
-## income_12months$60,000 to 79,999   4.5976    13.1391   0.350  0.72771   
-## income_12monthsLess than $5,000  -18.3117    10.5923  -1.729  0.08936 . 
-## ---
-## Signif. codes:  0 &#39;***&#39; 0.001 &#39;**&#39; 0.01 &#39;*&#39; 0.05 &#39;.&#39; 0.1 &#39; &#39; 1
-## 
-## Residual standard error: 18.95 on 56 degrees of freedom
-## Multiple R-squared:  0.1762, Adjusted R-squared:  0.04382 
-## F-statistic: 1.331 on 9 and 56 DF,  p-value: 0.2422</code></pre>
-<p><img src="/post/Diabetes2_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
-</div>
-<div id="results" class="section level2">
-<h2>Results</h2>
-<p>Here you will include all results. This includes descriptive statistics, graphs, figures, tables, and model results. Please ensure that everything is well formatted and in a report style. You must also provide an explanation of the results in this section. You can overflow to an Appendix if needed.</p>
-<p>Please ensure that everything is well labelled. So if you have multiple histograms and plots, calling them Figure 1, 2, 3, etc. and referencing them as Figure 1, Figure 2, etc. in your report will be expected. The reader should not get lost in a sea of information. Make sure to have the results be clean, well formatted and digestible.</p>
-</div>
-<div id="discussion" class="section level2">
-<h2>Discussion</h2>
-<p>Here you will discuss conclusions drawn from the results and comment on how it relates to the original goal of the study (which was specified in the Introduction).</p>
-</div>
-</div>
-<div id="weaknesses" class="section level1">
-<h1>Weaknesses</h1>
-<p>When looking through the study, data, and analysis there are two clear weaknesses that we believe are quite notable.</p>
-<p>To begin, the first weakness was from the data that we cleaned and filtered. When looking at our data, we have made slight modifications to all the columns. For example, the “age first diagnosed with diabetes” column has been slightly adjusted to exclude all the values which correspond to labels which do not accurately portray an age. For example. The age values 96 to 99 will not be included since they correspond to those values which are never diagnosed, not applicable, do not know, and not stated; in their respective order. Furthermore, this type of cleaning and filtering has been continued down for other columns including work hours per week, sleep hours, income in the last 12 months, and average number of drinks in the last 12 months. As a result of all of this, our data has been significantly decreased from the original quantity we received from CHASS.</p>
-<p>To continue, the other weakness lies with outliers. Throughout our models, it is clear that there are many outliers within our data. This weakness has a major impact on the linear regression models because the outliers influence the slopes by raising/lowering them. The other models are still influenced as well. If we removed the outliers, our models would be cleaner and much more accurate.</p>
-</div>
-<div id="next-steps" class="section level1">
-<h1>Next Steps</h1>
-<p>Here you discuss subsequent work to be done after this report. This can include next steps in terms of statistical analysis (perhaps there is a more efficient algorithm available, or perhaps there is a caveat in the data that would allow for some new technique). Future steps should also be specified in terms of the study setting (eg. including a follow-up survey on something, or a subsequent study that would complement the conclusions of your report).</p>
-<div id="references" class="section level2">
-<h2>References</h2>
+## ── Column specification ────────────────────────────────────────────────────────
+## cols(
+##   .default = col_double()
+## )
+## ℹ Use `spec()` for the full column specifications.</code></pre>
+<pre><code>## # A tibble: 23 x 13
+## # Rowwise: 
+##    case_id   age   sex personal_income…   BMI age_first_diagn… height weight
+##      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;            &lt;dbl&gt; &lt;dbl&gt;            &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1    2136     6     1                8  34.9               14    175    107
+##  2    3193     7     1                8  23.9               11    183     80
+##  3    4341     8     2                6  25                 24    160     64
+##  4    4344     9     1               10  28.4               38    170     82
+##  5    4464     7     2                6  36.4               30    152     84
+##  6    4585     9     1                8  24.6               42    178     78
+##  7    6163     9     2                3  30.1               50    160     77
+##  8    7694     4     1                8  21.6                6    168     61
+##  9   11244    11     1                4  26                 50    170     75
+## 10   11270     4     1                6  26.2                2    180     85
+## # … with 13 more rows, and 5 more variables: sleep_hours &lt;dbl&gt;,
+## #   cigarettes_smoke_per_day &lt;dbl&gt;, average_drink_for_12_months &lt;dbl&gt;,
+## #   work_hours_per_week &lt;dbl&gt;, nightshift_frequency &lt;dbl&gt;</code></pre>
 </div>
 </div>
